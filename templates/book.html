@@ -44,7 +44,6 @@
             <div class="line line-bottom"></div>
         </div>
     </div>
-    </div>
     <div id="outerdiv">
         <div id="bookimage">
             {% if details.imagelink != None %}
@@ -218,10 +217,11 @@
     const links = document.querySelectorAll(".nav-links li");
     const body = document.querySelector(".body");
 
-    hamburger.addEventListener("click", ()=>{
+    hamburger.addEventListener("click", () => {
         navLinks.classList.toggle("open");
         body.classList.toggle("open");
         hamburger.classList.toggle("open");
     });
 </script>
+
 </html>

@@ -122,8 +122,8 @@ form {
 //   -webkit-align-items: center;
 //   align-items: center;
 // }
-.sorry{
-  color: $black-brown; 
+.sorry {
+  color: $black-brown;
 }
 .swiper-container {
   width: 100%;
@@ -131,17 +131,18 @@ form {
   padding-bottom: 50px;
   margin-bottom: 20px;
 }
-.swiper-wrapper{
+.swiper-wrapper {
   display: flex;
   align-items: center;
-  a{
+  a {
     color: $tan;
     text-decoration: none;
     display: flex;
     justify-content: space-evenly;
     align-items: center;
     flex-wrap: wrap;
-    p:nth-child(4), p:nth-child(6){
+    p:nth-child(4),
+    p:nth-child(6) {
       margin-top: -13px;
     }
   }
@@ -152,27 +153,27 @@ form {
   background-position: center;
   background-size: cover;
   background: $black-brown;
-  h3{
+  h3 {
     width: 200px;
     text-align: center;
     font-size: 1.5rem;
   }
-  .author{
+  .author {
     width: 200px;
     text-align: center;
   }
-  .detail{
+  .detail {
     color: $beige;
     filter: sepia(1);
   }
-  .bookhead{
+  .bookhead {
     color: $tan;
   }
-  img{
+  img {
     width: 150px;
     height: 229px;
   }
-  #contents{
+  #contents {
     padding: 15px;
     display: flex;
     flex-direction: column;
@@ -181,21 +182,200 @@ form {
   }
 }
 
-#seemore{
+#seemore {
   background: transparent;
   font-size: 3rem;
   text-align: center;
-  a{
+  a {
     color: $black-brown;
     filter: sepia(0);
   }
-  a:hover{
-    color: #007aff; 
+  a:hover {
+    color: #007aff;
   }
 }
-#genrehead{
+#genrehead {
   text-align: center;
   font-size: 2.7rem;
   color: $black-brown;
   margin-bottom: -30px;
+}
+
+//Media Queries
+@media screen and (max-width: 800px) {
+  .swiper-button-next:active,
+  .swiper-button-next:focus,
+  .swiper-button-prev:active,
+  .swiper-button-prev:focus {
+    outline: none;
+  }
+  #outerdiv {
+    #bookabout {
+      margin-top: 20px;
+      width: 95%;
+      // background: yellow;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      #rating-container {
+        display: flex;
+        flex-wrap: wrap;
+        text-align: center;
+        width: 100%;
+        justify-content: space-around;
+        align-items: center;
+        #rating1,
+        #rating2 {
+          margin: 10px;
+        }
+      }
+    }
+  }
+  .line {
+    width: 30px;
+    height: 3px;
+    background: white;
+    margin: 5px;
+  }
+  .hamburger {
+    position: absolute;
+    cursor: pointer;
+    right: 5%;
+    top: 50%;
+    transform: translate(-5%, -50%);
+    z-index: 3;
+    .line-top,
+    .line-mid,
+    .line-bottom {
+      transition: all 1s ease-out;
+    }
+  }
+  .nav-links.open {
+    clip-path: circle(1500px at 90% -10%);
+    -webkit-clip-path: circle(1500px at 90% -10%);
+    pointer-events: all;
+  }
+  .body.open {
+    overflow: hidden;
+  }
+  .hamburger.open {
+    .line-top {
+      transform: rotate(405deg);
+      position: absolute;
+      top: 25%;
+    }
+    .line-mid {
+      transform: translateX(-100%);
+      opacity: 0;
+      pointer-events: none;
+    }
+    .line-bottom {
+      transform: rotate(495deg);
+      position: absolute;
+      top: 25%;
+    }
+  }
+  .nav-links {
+    width: 100%;
+    height: 100vh;
+    background: $black-brown;
+    position: fixed;
+    top: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 2;
+    // display: none;
+    transition: all 1s ease-out;
+    clip-path: circle(0px at 90% -10%);
+    -webkit-clip-path: circle(0px at 90% -10%);
+    pointer-events: none;
+    ul {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      height: 100vh;
+      #elements {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+      }
+    }
+  }
+  #navbar {
+    height: 60px;
+    background: $black-brown;
+    position: relative;
+    #logo {
+      font-size: 5.5rem;
+    }
+    li {
+      margin: 3vh 0;
+    }
+  }
+}
+@media screen and (max-height: 350px) and (max-width: 800px) {
+  .nav-links {
+    ul {
+      #elements {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+      }
+    }
+  }
+  #navbar {
+    #elements {
+      width: 100%;
+    }
+    #logo {
+      font-size: 4.5rem;
+    }
+  }
+}
+
+@media screen and (max-width: 415px) {
+  .swiper-container {
+    width: 90%;
+  }
+  #genrehead {
+    text-align: center;
+    font-size: 2.2rem;
+    color: $black-brown;
+    margin-bottom: -30px;
+  }
+  form {
+    #form{
+      width: 85%;
+    }
+    input {
+      width: 100%;
+      transition: none;
+    }
+    #searchbar {
+      width: 80vw;
+      font-size: 1rem;
+    }
+    input:active,
+    input:focus {
+      background: white;
+      border: 2px solid $black-brown;
+      transition: none;
+      color: $black-brown;
+      width: 100%;
+    }
+  }
+  h1{
+    margin-top: 120px;
+    font-size: 3rem;
+  }
+  h2{
+    margin-top: 80px;
+    font-size: 1.75rem;
+  }
 }

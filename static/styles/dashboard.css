@@ -240,7 +240,8 @@ form input:focus {
       flex-wrap: wrap;
 }
 
-.swiper-wrapper a p:nth-child(4), .swiper-wrapper a p:nth-child(6) {
+.swiper-wrapper a p:nth-child(4),
+.swiper-wrapper a p:nth-child(6) {
   margin-top: -13px;
 }
 
@@ -315,5 +316,225 @@ form input:focus {
   font-size: 2.7rem;
   color: #201e20;
   margin-bottom: -30px;
+}
+
+@media screen and (max-width: 800px) {
+  .swiper-button-next:active,
+  .swiper-button-next:focus,
+  .swiper-button-prev:active,
+  .swiper-button-prev:focus {
+    outline: none;
+  }
+  #outerdiv #bookabout {
+    margin-top: 20px;
+    width: 95%;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    text-align: center;
+  }
+  #outerdiv #bookabout #rating-container {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+    text-align: center;
+    width: 100%;
+    -ms-flex-pack: distribute;
+        justify-content: space-around;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+  }
+  #outerdiv #bookabout #rating-container #rating1,
+  #outerdiv #bookabout #rating-container #rating2 {
+    margin: 10px;
+  }
+  .line {
+    width: 30px;
+    height: 3px;
+    background: white;
+    margin: 5px;
+  }
+  .hamburger {
+    position: absolute;
+    cursor: pointer;
+    right: 5%;
+    top: 50%;
+    -webkit-transform: translate(-5%, -50%);
+            transform: translate(-5%, -50%);
+    z-index: 3;
+  }
+  .hamburger .line-top,
+  .hamburger .line-mid,
+  .hamburger .line-bottom {
+    -webkit-transition: all 1s ease-out;
+    transition: all 1s ease-out;
+  }
+  .nav-links.open {
+    clip-path: circle(1500px at 90% -10%);
+    -webkit-clip-path: circle(1500px at 90% -10%);
+    pointer-events: all;
+  }
+  .body.open {
+    overflow: hidden;
+  }
+  .hamburger.open .line-top {
+    -webkit-transform: rotate(405deg);
+            transform: rotate(405deg);
+    position: absolute;
+    top: 25%;
+  }
+  .hamburger.open .line-mid {
+    -webkit-transform: translateX(-100%);
+            transform: translateX(-100%);
+    opacity: 0;
+    pointer-events: none;
+  }
+  .hamburger.open .line-bottom {
+    -webkit-transform: rotate(495deg);
+            transform: rotate(495deg);
+    position: absolute;
+    top: 25%;
+  }
+  .nav-links {
+    width: 100%;
+    height: 100vh;
+    background: #201e20;
+    position: fixed;
+    top: 0;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    z-index: 2;
+    -webkit-transition: all 1s ease-out;
+    transition: all 1s ease-out;
+    clip-path: circle(0px at 90% -10%);
+    -webkit-clip-path: circle(0px at 90% -10%);
+    pointer-events: none;
+  }
+  .nav-links ul {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    width: 100%;
+    height: 100vh;
+  }
+  .nav-links ul #elements {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+  }
+  #navbar {
+    height: 60px;
+    background: #201e20;
+    position: relative;
+  }
+  #navbar #logo {
+    font-size: 5.5rem;
+  }
+  #navbar li {
+    margin: 3vh 0;
+  }
+}
+
+@media screen and (max-height: 350px) and (max-width: 800px) {
+  .nav-links ul #elements {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
+    -webkit-box-pack: space-evenly;
+        -ms-flex-pack: space-evenly;
+            justify-content: space-evenly;
+  }
+  #navbar #elements {
+    width: 100%;
+  }
+  #navbar #logo {
+    font-size: 4.5rem;
+  }
+}
+
+@media screen and (max-width: 415px) {
+  .swiper-container {
+    width: 90%;
+  }
+  #genrehead {
+    text-align: center;
+    font-size: 2.2rem;
+    color: #201e20;
+    margin-bottom: -30px;
+  }
+  form #form {
+    width: 85%;
+  }
+  form input {
+    width: 100%;
+    -webkit-transition: none;
+    transition: none;
+  }
+  form #searchbar {
+    width: 80vw;
+    font-size: 1rem;
+  }
+  form input:active,
+  form input:focus {
+    background: white;
+    border: 2px solid #201e20;
+    -webkit-transition: none;
+    transition: none;
+    color: #201e20;
+    width: 100%;
+  }
+  h1 {
+    margin-top: 120px;
+    font-size: 3rem;
+  }
+  h2 {
+    margin-top: 80px;
+    font-size: 1.75rem;
+  }
 }
 /*# sourceMappingURL=dashboard.css.map */
