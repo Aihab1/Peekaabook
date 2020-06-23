@@ -1,0 +1,65 @@
+#navbar {
+  background: #201e20;
+  opacity: 1;
+}
+
+#navbar #logo {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  font-family: 'Pirata One', sans-serif;
+  font-size: 60px;
+  text-shadow: black -5px 5px 2px;
+  color: #E0A96D;
+}
+
+#navbar .nav-element1:hover, #navbar .nav-element2:hover, #navbar .nav-element3:hover {
+  opacity: 1;
+  -webkit-filter: sepia(1);
+          filter: sepia(1);
+}
+
+#navbar #logo:hover {
+  opacity: 1;
+  -webkit-filter: sepia(1);
+          filter: sepia(1);
+  color: #ddc3a5;
+}
+
+#navbar a {
+  text-decoration: none;
+  color: #ddc3a5;
+}
+
+#navbar a:hover {
+  color: #ddc3a5;
+}
+
+#navbar li {
+  list-style: none;
+}
+
+#navbar ul {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  height: 90px;
+}
+
+#navbar #elements {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  width: 40%;
+}
+/*# sourceMappingURL=navbar.css.map */

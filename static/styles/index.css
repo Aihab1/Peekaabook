@@ -1,0 +1,303 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Pirata+One|Rubik:900");
+@import url("https://fonts.googleapis.com/css2?family=Clicker+Script&display=swap");
+* {
+  overflow-x: hidden;
+  padding: 0;
+  margin: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  font-family: "Roboto", sans-serif;
+}
+
+body {
+  background: black;
+}
+
+#background {
+  position: absolute;
+  top: -20%;
+  z-index: -1;
+  -webkit-box-reflect: below -1px -webkit-gradient(linear, left top, left bottom, from(transparent), color-stop(57%, transparent), to(#fafafa));
+}
+
+#navbar {
+  background: black;
+  opacity: 0.6;
+}
+
+#navbar #logo {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  font-family: "Pirata One", sans-serif;
+  font-size: 60px;
+  text-shadow: black -5px 5px 5px;
+  color: #e0a96d;
+}
+
+#navbar #logo span {
+  font-family: "Clicker Script", sans-serif;
+  font-style: italic;
+  font-size: 30px;
+  margin-left: 15px;
+  padding-top: 5px;
+  text-shadow: black -2px 2px 2px;
+  color: #ddc3a5;
+}
+
+#navbar #login {
+  text-shadow: black -3px 3px 2px;
+  font-size: 35px;
+  color: #e0a96d;
+}
+
+#navbar #login:hover,
+#navbar #logo:hover {
+  opacity: 1;
+  color: #ddc3a5;
+  -webkit-filter: sepia(1);
+          filter: sepia(1);
+}
+
+#navbar a {
+  text-decoration: none;
+  color: white;
+  font-size: 1.5rem;
+  font-family: "Pirata One", sans-serif;
+}
+
+#navbar li {
+  list-style: none;
+}
+
+#navbar ul {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  height: 90px;
+}
+
+#intro {
+  margin-top: 50px;
+  margin-bottom: 70px;
+  height: 500px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  pointer-events: none;
+  opacity: 0.8;
+  -webkit-filter: sepia(1);
+          filter: sepia(1);
+}
+
+#intro h1 {
+  color: white;
+  text-align: center;
+  font-size: 8rem;
+  font-family: "Pirata One", sans-serif;
+  text-shadow: black 5px 5px 5px;
+}
+
+#intro h2 {
+  color: white;
+  text-align: center;
+  font-size: 4rem;
+  width: 80%;
+  font-family: "Pirata One", sans-serif;
+  text-shadow: black 5px 5px 5px;
+}
+
+#quotes {
+  overflow: hidden;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  text-align: center;
+  background: black;
+  height: 500px;
+  opacity: 0.9;
+}
+
+#quotes h2 {
+  width: 90%;
+  font-size: 4rem;
+  color: #ddc3a5;
+  -webkit-filter: sepia(1);
+          filter: sepia(1);
+}
+
+#quotes p {
+  font-size: 2.5rem;
+  width: 70%;
+  color: #e0a96d;
+}
+
+#get-started {
+  text-align: center;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+  height: 650px;
+  opacity: 0.8;
+}
+
+#get-started p {
+  width: 70%;
+  color: white;
+  font-size: 2.5rem;
+  pointer-events: none;
+}
+
+#get-started a {
+  text-decoration: none;
+  color: white;
+  font-size: 6rem;
+}
+
+#get-started a:hover {
+  color: #e0a96d;
+}
+
+@media only screen and (max-width: 948px) {
+  #background {
+    top: 0;
+  }
+  #intro {
+    height: 350px;
+  }
+  #intro h1 {
+    font-size: 6rem;
+  }
+  #intro h2 {
+    font-size: 3rem;
+  }
+  #quotes {
+    height: 350px;
+  }
+  #quotes h2 {
+    font-size: 3rem;
+  }
+  #quotes p {
+    font-size: 1.75rem;
+  }
+  #get-started {
+    height: 450px;
+  }
+  #get-started a {
+    font-size: 4rem;
+  }
+  #get-started p {
+    font-size: 1.75rem;
+    width: 85%;
+  }
+}
+
+@media only screen and (max-width: 700px) {
+  #quotes {
+    height: 250px;
+  }
+  #quotes h2 {
+    font-size: 2.3rem;
+  }
+  #quotes p {
+    font-size: 1.4rem;
+  }
+  #get-started {
+    height: 300px;
+  }
+  #get-started a {
+    font-size: 3.5rem;
+  }
+  #get-started p {
+    font-size: 1.4rem;
+    width: 85%;
+  }
+  #navbar #logo {
+    font-size: 50px;
+  }
+  #navbar #logo span {
+    font-size: 25px;
+  }
+  #navbar #login {
+    font-size: 30px;
+  }
+  #intro {
+    height: 280px;
+    margin-top: 25px;
+    margin-bottom: 35px;
+  }
+  #intro h1 {
+    font-size: 5rem;
+  }
+  #intro h2 {
+    font-size: 2.75rem;
+  }
+}
+
+@media only screen and (max-width: 450px) {
+  #intro h1 {
+    font-size: 4.25rem;
+  }
+  #intro h2 {
+    font-size: 2.2rem;
+  }
+  #get-started {
+    height: 300px;
+  }
+  #get-started a {
+    font-size: 3rem;
+  }
+  #get-started p {
+    font-size: 1.4rem;
+    width: 85%;
+  }
+  #quotes {
+    height: 185px;
+  }
+  #quotes h2 {
+    font-size: 1.75rem;
+  }
+  #quotes p {
+    font-size: 1rem;
+  }
+}
+/*# sourceMappingURL=index.css.map */

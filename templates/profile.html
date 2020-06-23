@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Profile</title>
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../static/styles/profile.css">
+</head>
+
+<body class="body">
+    <div id="navbar">
+        <div class="nav-links">
+            <ul>
+                <li><a id="logo" href="{{ url_for('index') }}">PB</a></li>
+                <li>
+                    <form action="{{ url_for('search') }}" method="GET" spellcheck="false">
+                        <div id="form">
+                            <input id="searchbar" type="text" name="search" placeholder="ISBN/Title/Author"
+                                autocomplete="off" required>
+                            <button id="search" type="submit">
+                                <svg class="bi bi-search" width="20px" height="20px" viewBox="0 0 16 16"
+                                    fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd"
+                                        d="M10.442 10.442a1 1 0 0 1 1.415 0l3.85 3.85a1 1 0 0 1-1.414 1.415l-3.85-3.85a1 1 0 0 1 0-1.415z" />
+                                    <path fill-rule="evenodd"
+                                        d="M6.5 12a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11zM13 6.5a6.5 6.5 0 1 1-13 0 6.5 6.5 0 0 1 13 0z" />
+                                </svg>
+                            </button>
+                        </div>
+                    </form>
+                </li>
+                <div id="elements">
+                    <li><a class="nav-element1" href="{{ url_for('profile') }}">{{username}}</a></li>
+                    <li><a class="nav-element2" href="{{ url_for('login') }}">Dashboard</a></li>
+                    <li><a class="nav-element3" href="{{ url_for('logout') }}">Log out</a></li>
+                </div>
+            </ul>
+        </div>
+        <div class="hamburger">
+            <div class="line line-top"></div>
+            <div class="line line-mid"></div>
+            <div class="line line-bottom"></div>
+        </div>
+    </div>
+    <h1>{{fullname}}</h1>
+    <h3 id="wishlistheader">My Reading Wishlist</h3>
+    <div id="allbooks">
+        {% if wishlist_data|length < 1 %}
+        <p style="text-align: center;">Wishlist is Empty</p>
+        {% endif %}
+        {% for i in range(wishlist_data|length) %}
+        <div class="book-holder">
+            {% if wishlist_data[i].imagelink != None %}
+            <a href="{{ url_for('books', isbn=wishlist_data[i].isbn) }}">
+                <img src="{{wishlist_data[i].imagelink}}" alt="Book Cover" width="150" height="229">
+            </a>
+            {% else %}
+            <div style="width: 150px; height: 229px; position: relative; overflow: hidden;">
+                <a href="{{ url_for('books', isbn=wishlist_data[i].isbn) }}">
+                    <img src="../static/bookcover.png" width="150" height="229">
+                </a>
+                <p
+                    style="position: absolute; width: 100%; top:50%; left: 0; transform: translateY(-50%); text-align: center;">
+                    {{wishlist_data[i].title}}</p>
+            </div>
+            {% endif %}
+            <a id="remove" href="{{ url_for('remove_from_wishlist_profile', isbn=wishlist_data[i].isbn) }}"
+                onclick="return confirm('Are you sure?');">Remove</a>
+        </div>
+        <br>
+        {% endfor %}
+    </div>
+    <h3 style="margin-top: 15px; margin-bottom: -30px;">My Reviews</h3>
+    <div id="outer-review-div">
+        {% if reviewed_data|length < 1 %}
+        <p style="text-align: center;">No books reviewed yet!</p>
+        {% endif %}
+        {% for data in reviewed_data %}
+        <div class="review">
+            <p class="datetime">
+                {{data.datetime}}</p>
+            <a href="{{ url_for('books', isbn=data.isbn) }}">
+                <h4>{{data.title}}</h4>
+            </a>
+            <p>Rated
+                {% for i in range(0, data.rating) %}
+                <svg style="margin-top: 2px;" class="bi bi-star-fill" width="1em" height="1em" viewBox="0 0 16 16"
+                    fill="#ffae42" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                        d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
+                </svg>
+
+                {% endfor %}
+                {% for i in range(0, 5-data.rating) %}
+                <svg style="margin-top: 2px;" class="bi bi-star" width="1em" height="1em" viewBox="0 0 16 16"
+                    fill="#ffae42" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd"
+                        d="M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.523-3.356c.329-.314.158-.888-.283-.95l-4.898-.696L8.465.792a.513.513 0 0 0-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767l-3.686 1.894.694-3.957a.565.565 0 0 0-.163-.505L1.71 6.745l4.052-.576a.525.525 0 0 0 .393-.288l1.847-3.658 1.846 3.658a.525.525 0 0 0 .393.288l4.052.575-2.906 2.77a.564.564 0 0 0-.163.506l.694 3.957-3.686-1.894a.503.503 0 0 0-.461 0z" />
+                </svg>
+            </p>
+            {% endfor %}
+            <div class="review-edit-delete">
+                <p style="margin-top: 15px;">{{data.review}}</p>
+                <div class="edit-delete">
+                    <a href="{{ url_for('edit_review', isbn=data.isbn) }}">Edit</a>
+                    <a href="{{ url_for('delete_review', isbn=data.isbn) }}" onclick="return confirm('Are you sure?');"
+                        style="margin-left: 20px;">Delete</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</body>
+<script>
+    const hamburger = document.querySelector('.hamburger');
+    const navLinks = document.querySelector(".nav-links");
+    const links = document.querySelectorAll(".nav-links li");
+    const body = document.querySelector(".body");
+
+    hamburger.addEventListener("click", ()=>{
+        navLinks.classList.toggle("open");
+        body.classList.toggle("open");
+        hamburger.classList.toggle("open");
+    });
+</script>
+</html>

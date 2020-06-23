@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="../static/styles/swiper.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../static/styles/dashboard.css">
+</head>
+
+<body>
+    <div id="navbar">
+        <ul>
+            <li><a id="logo" href="{{ url_for('index') }}">PB</a></li>
+            <div id="elements">
+                <li><a class="nav-element1" href="{{ url_for('profile') }}">{{username}}</a></li>
+                <li><a class="nav-element2" href="{{ url_for('login') }}">Dashboard</a></li>
+                <li><a class="nav-element3" href="{{ url_for('logout') }}">Log out</a></li>
+            </div>
+        </ul>
+    </div>
+    <h1>Hello {{username}}</h1>
+    <h2>Search a book...</h2>
+    <form action="{{ url_for('search') }}" method="GET" spellcheck="false">
+        <div id="form">
+            <input type="text" name="search" placeholder="ISBN/Title/Author" autocomplete="off" required>
+            <button type="submit">
+                <svg class="bi bi-search" width="20px" height="20px" viewBox="0 0 16 16" fill="currentColor"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd"
+                        d="M10.442 10.442a1 1 0 0 1 1.415 0l3.85 3.85a1 1 0 0 1-1.414 1.415l-3.85-3.85a1 1 0 0 1 0-1.415z" />
+                    <path fill-rule="evenodd"
+                        d="M6.5 12a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11zM13 6.5a6.5 6.5 0 1 1-13 0 6.5 6.5 0 0 1 13 0z" />
+                </svg>
+            </button>
+        </div>
+    </form>
+    {% if mybooks != ["Sorry, no book found!"] and mybooks|length > 0 %}
+    <div class="swiper-container">
+        <div class="swiper-wrapper">
+            {% for i in range(mybooks|length) %}
+            <div class="swiper-slide">
+                <a href="{{ url_for('books', isbn=mybooks[i].isbn) }}">
+                    {% if mybooks[i].imagelink != None %}
+                    <img src="{{mybooks[i].imagelink}}" alt="Book Cover">
+                    {% else %}
+                    <img src="../static/bookcover.png" alt="Book Cover">
+                    {% endif %}
+                    <div id="contents">
+                        <h3>{{ mybooks[i].title }}</h3>
+                        <p class="detail author"><i>by {{ mybooks[i].author }}</i></p>
+                        <p class="bookhead">ISBN</p>
+                        <p class="detail">{{ mybooks[i].isbn }}</p>
+                        <p class="bookhead">YEAR</p>
+                        <p class="detail">{{ mybooks[i].year }}</p>
+                    </div>
+                </a>
+            </div>
+            {% endfor %}
+            {% if mybooks|length == 10 %}
+            <div id="seemore" class="swiper-slide">
+                <a href="{{url_for('see_more', mysearch=mysearch)}}">See More</a>
+            </div>
+            {% endif %}
+        </div>
+        <!-- Add Pagination -->
+        <div class="swiper-pagination"></div>
+        <!-- Add Arrows -->
+        <div class="swiper-button-next"></div>
+        <div class="swiper-button-prev"></div>
+    </div>
+    {% else %}
+    {% for text in mybooks %}
+    <h3 class="sorry" style="text-align: center;">{{text}}</h3>
+    {% endfor %}
+    {% endif %}
+    <br>
+    <br>
+    {% if drama|length > 0 %}
+    <h2>Browse by genre</h2>
+    <br>
+    <h3 id="genrehead">Biography & Autobiography</h3>
+    <div class="swiper-container">
+        <div class="swiper-wrapper">
+            {% for book in biography_and_autobiography %}
+            <div class="swiper-slide">
+                <a href="{{ url_for('books', isbn=book.isbn) }}">
+                    {% if book.imagelink != None %}
+                    <img src="{{book.imagelink}}" alt="Book Cover">
+                    {% else %}
+                    <img src="../static/bookcover.png" alt="Book Cover">
+                    {% endif %}
+                    <div id="contents">
+                        <h3>{{ book.title }}</h3>
+                        <p class="detail author"><i>by {{ book.author }}</i></p>
+                        <p class="bookhead">ISBN</p>
+                        <p class="detail">{{ book.isbn }}</p>
+                        <p class="bookhead">YEAR</p>
+                        <p class="detail">{{ book.year }}</p>
+                    </div>
+                </a>
+            </div>
+            {% endfor %}
+            {% if biography_and_autobiography|length == 7 %}
+            <div id="seemore" class="swiper-slide">
+                <a href="{{url_for('see_all', genre = 'biography & autobiography')}}">See All</a>
+            </div>
+            {% endif %}
+        </div>
+        <!-- Add Pagination -->
+        <div class="swiper-pagination"></div>
+        <!-- Add Arrows -->
+        <div class="swiper-button-next"></div>
+        <div class="swiper-button-prev"></div>
+    </div>
+
+    <h3 id="genrehead">Juvenile Fiction</h3>
+    <div class="swiper-container">
+        <div class="swiper-wrapper">
+            {% for book in juvenile_fiction %}
+            <div class="swiper-slide">
+                <a href="{{ url_for('books', isbn=book.isbn) }}">
+                    {% if book.imagelink != None %}
+                    <img src="{{book.imagelink}}" alt="Book Cover">
+                    {% else %}
+                    <img src="../static/bookcover.png" alt="Book Cover">
+                    {% endif %}
+                    <div id="contents">
+                        <h3>{{ book.title }}</h3>
+                        <p class="detail author"><i>by {{ book.author }}</i></p>
+                        <p class="bookhead">ISBN</p>
+                        <p class="detail">{{ book.isbn }}</p>
+                        <p class="bookhead">YEAR</p>
+                        <p class="detail">{{ book.year }}</p>
+                    </div>
+                </a>
+            </div>
+            {% endfor %}
+            {% if juvenile_fiction|length == 7 %}
+            <div id="seemore" class="swiper-slide">
+                <a href="{{url_for('see_all', genre = 'juvenile fiction')}}">See All</a>
+            </div>
+            {% endif %}
+        </div>
+        <!-- Add Pagination -->
+        <div class="swiper-pagination"></div>
+        <!-- Add Arrows -->
+        <div class="swiper-button-next"></div>
+        <div class="swiper-button-prev"></div>
+    </div>
+
+    <h3 id="genrehead">Comics and Graphical Novels</h3>
+    <div class="swiper-container">
+        <div class="swiper-wrapper">
+            {% for book in comics %}
+            <div class="swiper-slide">
+                <a href="{{ url_for('books', isbn=book.isbn) }}">
+                    {% if book.imagelink != None %}
+                    <img src="{{book.imagelink}}" alt="Book Cover">
+                    {% else %}
+                    <img src="../static/bookcover.png" alt="Book Cover">
+                    {% endif %}
+                    <div id="contents">
+                        <h3>{{ book.title }}</h3>
+                        <p class="detail author"><i>by {{ book.author }}</i></p>
+                        <p class="bookhead">ISBN</p>
+                        <p class="detail">{{ book.isbn }}</p>
+                        <p class="bookhead">YEAR</p>
+                        <p class="detail">{{ book.year }}</p>
+                    </div>
+                </a>
+            </div>
+            {% endfor %}
+            {% if comics|length == 7 %}
+            <div id="seemore" class="swiper-slide">
+                <a href="{{url_for('see_all', genre = 'comics & graphic novels')}}">See All</a>
+            </div>
+            {% endif %}
+        </div>
+        <!-- Add Pagination -->
+        <div class="swiper-pagination"></div>
+        <!-- Add Arrows -->
+        <div class="swiper-button-next"></div>
+        <div class="swiper-button-prev"></div>
+    </div>
+
+    <h3 id="genrehead">Drama</h3>
+    <div class="swiper-container">
+        <div class="swiper-wrapper">
+            {% for book in drama %}
+            <div class="swiper-slide">
+                <a href="{{ url_for('books', isbn=book.isbn) }}">
+                    {% if book.imagelink != None %}
+                    <img src="{{book.imagelink}}" alt="Book Cover">
+                    {% else %}
+                    <img src="../static/bookcover.png" alt="Book Cover">
+                    {% endif %}
+                    <div id="contents">
+                        <h3>{{ book.title }}</h3>
+                        <p class="detail author"><i>by {{ book.author }}</i></p>
+                        <p class="bookhead">ISBN</p>
+                        <p class="detail">{{ book.isbn }}</p>
+                        <p class="bookhead">YEAR</p>
+                        <p class="detail">{{ book.year }}</p>
+                    </div>
+                </a>
+            </div>
+            {% endfor %}
+            {% if drama|length == 7 %}
+            <div id="seemore" class="swiper-slide">
+                <a href="{{url_for('see_all', genre = 'drama')}}">See All</a>
+            </div>
+            {% endif %}
+        </div>
+        <!-- Add Pagination -->
+        <div class="swiper-pagination"></div>
+        <!-- Add Arrows -->
+        <div class="swiper-button-next"></div>
+        <div class="swiper-button-prev"></div>
+    </div>
+
+    <h3 id="genrehead">Young Adult Fiction</h3>
+    <div class="swiper-container">
+        <div class="swiper-wrapper">
+            {% for book in young_adult_fiction %}
+            <div class="swiper-slide">
+                <a href="{{ url_for('books', isbn=book.isbn) }}">
+                    {% if book.imagelink != None %}
+                    <img src="{{book.imagelink}}" alt="Book Cover">
+                    {% else %}
+                    <img src="../static/bookcover.png" alt="Book Cover">
+                    {% endif %}
+                    <div id="contents">
+                        <h3>{{ book.title }}</h3>
+                        <p class="detail author"><i>by {{ book.author }}</i></p>
+                        <p class="bookhead">ISBN</p>
+                        <p class="detail">{{ book.isbn }}</p>
+                        <p class="bookhead">YEAR</p>
+                        <p class="detail">{{ book.year }}</p>
+                    </div>
+                </a>
+            </div>
+            {% endfor %}
+            {% if young_adult_fiction|length == 7 %}
+            <div id="seemore" class="swiper-slide">
+                <a href="{{url_for('see_all', genre = 'young adult fiction')}}">See All</a>
+            </div>
+            {% endif %}
+        </div>
+        <!-- Add Pagination -->
+        <div class="swiper-pagination"></div>
+        <!-- Add Arrows -->
+        <div class="swiper-button-next"></div>
+        <div class="swiper-button-prev"></div>
+    </div>
+
+    <h3 id="genrehead">Children's Stories</h3>
+    <div class="swiper-container">
+        <div class="swiper-wrapper">
+            {% for book in children_stories %}
+            <div class="swiper-slide">
+                <a href="{{ url_for('books', isbn=book.isbn) }}">
+                    {% if book.imagelink != None %}
+                    <img src="{{book.imagelink}}" alt="Book Cover">
+                    {% else %}
+                    <img src="../static/bookcover.png" alt="Book Cover">
+                    {% endif %}
+                    <div id="contents">
+                        <h3>{{ book.title }}</h3>
+                        <p class="detail author"><i>by {{ book.author }}</i></p>
+                        <p class="bookhead">ISBN</p>
+                        <p class="detail">{{ book.isbn }}</p>
+                        <p class="bookhead">YEAR</p>
+                        <p class="detail">{{ book.year }}</p>
+                    </div>
+                </a>
+            </div>
+            {% endfor %}
+            {% if children_stories|length == 7 %}
+            <div id="seemore" class="swiper-slide">
+                <a href="{{url_for('see_all', genre = 'children\'s stories')}}">See All</a>
+            </div>
+            {% endif %}
+        </div>
+        <!-- Add Pagination -->
+        <div class="swiper-pagination"></div>
+        <!-- Add Arrows -->
+        <div class="swiper-button-next"></div>
+        <div class="swiper-button-prev"></div>
+    </div>
+
+    <h3 id="genrehead">Religion</h3>
+    <div class="swiper-container">
+        <div class="swiper-wrapper">
+            {% for book in religion %}
+            <div class="swiper-slide">
+                <a href="{{ url_for('books', isbn=book.isbn) }}">
+                    {% if book.imagelink != None %}
+                    <img src="{{book.imagelink}}" alt="Book Cover">
+                    {% else %}
+                    <img src="../static/bookcover.png" alt="Book Cover">
+                    {% endif %}
+                    <div id="contents">
+                        <h3>{{ book.title }}</h3>
+                        <p class="detail author"><i>by {{ book.author }}</i></p>
+                        <p class="bookhead">ISBN</p>
+                        <p class="detail">{{ book.isbn }}</p>
+                        <p class="bookhead">YEAR</p>
+                        <p class="detail">{{ book.year }}</p>
+                    </div>
+                </a>
+            </div>
+            {% endfor %}
+            {% if religion|length == 7 %}
+            <div id="seemore" class="swiper-slide">
+                <a href="{{url_for('see_all', genre = 'religion')}}">See All</a>
+            </div>
+            {% endif %}
+        </div>
+        <!-- Add Pagination -->
+        <div class="swiper-pagination"></div>
+        <!-- Add Arrows -->
+        <div class="swiper-button-next"></div>
+        <div class="swiper-button-prev"></div>
+    </div>
+
+    <h3 id="genrehead">Business & Economics</h3>
+    <div class="swiper-container">
+        <div class="swiper-wrapper">
+            {% for book in business_and_economics %}
+            <div class="swiper-slide">
+                <a href="{{ url_for('books', isbn=book.isbn) }}">
+                    {% if book.imagelink != None %}
+                    <img src="{{book.imagelink}}" alt="Book Cover">
+                    {% else %}
+                    <img src="../static/bookcover.png" alt="Book Cover">
+                    {% endif %}
+                    <div id="contents">
+                        <h3>{{ book.title }}</h3>
+                        <p class="detail author"><i>by {{ book.author }}</i></p>
+                        <p class="bookhead">ISBN</p>
+                        <p class="detail">{{ book.isbn }}</p>
+                        <p class="bookhead">YEAR</p>
+                        <p class="detail">{{ book.year }}</p>
+                    </div>
+                </a>
+            </div>
+            {% endfor %}
+            {% if business_and_economics|length == 7 %}
+            <div id="seemore" class="swiper-slide">
+                <a href="{{url_for('see_all', genre = 'business & economics')}}">See All</a>
+            </div>
+            {% endif %}
+        </div>
+        <!-- Add Pagination -->
+        <div class="swiper-pagination"></div>
+        <!-- Add Arrows -->
+        <div class="swiper-button-next"></div>
+        <div class="swiper-button-prev"></div>
+    </div>
+
+    <h3 id="genrehead">Horror</h3>
+    <div class="swiper-container">
+        <div class="swiper-wrapper">
+            {% for book in horror %}
+            <div class="swiper-slide">
+                <a href="{{ url_for('books', isbn=book.isbn) }}">
+                    {% if book.imagelink != None %}
+                    <img src="{{book.imagelink}}" alt="Book Cover">
+                    {% else %}
+                    <img src="../static/bookcover.png" alt="Book Cover">
+                    {% endif %}
+                    <div id="contents">
+                        <h3>{{ book.title }}</h3>
+                        <p class="detail author"><i>by {{ book.author }}</i></p>
+                        <p class="bookhead">ISBN</p>
+                        <p class="detail">{{ book.isbn }}</p>
+                        <p class="bookhead">YEAR</p>
+                        <p class="detail">{{ book.year }}</p>
+                    </div>
+                </a>
+            </div>
+            {% endfor %}
+            {% if horror|length == 7 %}
+            <div id="seemore" class="swiper-slide">
+                <a href="{{url_for('see_all', genre = 'horror')}}">See All</a>
+            </div>
+            {% endif %}
+        </div>
+        <!-- Add Pagination -->
+        <div class="swiper-pagination"></div>
+        <!-- Add Arrows -->
+        <div class="swiper-button-next"></div>
+        <div class="swiper-button-prev"></div>
+    </div>
+
+    <h3 id="genrehead">Health & Fitness</h3>
+    <div class="swiper-container">
+        <div class="swiper-wrapper">
+            {% for book in health_and_fitness  %}
+            <div class="swiper-slide">
+                <a href="{{ url_for('books', isbn=book.isbn) }}">
+                    {% if book.imagelink != None %}
+                    <img src="{{book.imagelink}}" alt="Book Cover">
+                    {% else %}
+                    <img src="../static/bookcover.png" alt="Book Cover">
+                    {% endif %}
+                    <div id="contents">
+                        <h3>{{ book.title }}</h3>
+                        <p class="detail author"><i>by {{ book.author }}</i></p>
+                        <p class="bookhead">ISBN</p>
+                        <p class="detail">{{ book.isbn }}</p>
+                        <p class="bookhead">YEAR</p>
+                        <p class="detail">{{ book.year }}</p>
+                    </div>
+                </a>
+            </div>
+            {% endfor %}
+            {% if health_and_fitness|length == 7 %}
+            <div id="seemore" class="swiper-slide">
+                <a href="{{url_for('see_all', genre = 'health')}}">See All</a>
+            </div>
+            {% endif %}
+        </div>
+        <!-- Add Pagination -->
+        <div class="swiper-pagination"></div>
+        <!-- Add Arrows -->
+        <div class="swiper-button-next"></div>
+        <div class="swiper-button-prev"></div>
+    </div>
+
+    <h3 id="genrehead">Crime</h3>
+    <div class="swiper-container">
+        <div class="swiper-wrapper">
+            {% for book in crime %}
+            <div class="swiper-slide">
+                <a href="{{ url_for('books', isbn=book.isbn) }}">
+                    {% if book.imagelink != None %}
+                    <img src="{{book.imagelink}}" alt="Book Cover">
+                    {% else %}
+                    <img src="../static/bookcover.png" alt="Book Cover">
+                    {% endif %}
+                    <div id="contents">
+                        <h3>{{ book.title }}</h3>
+                        <p class="detail author"><i>by {{ book.author }}</i></p>
+                        <p class="bookhead">ISBN</p>
+                        <p class="detail">{{ book.isbn }}</p>
+                        <p class="bookhead">YEAR</p>
+                        <p class="detail">{{ book.year }}</p>
+                    </div>
+                </a>
+            </div>
+            {% endfor %}
+            {% if crime|length == 7 %}
+            <div id="seemore" class="swiper-slide">
+                <a href="{{url_for('see_all', genre = 'crime')}}">See All</a>
+            </div>
+            {% endif %}
+        </div>
+        <!-- Add Pagination -->
+        <div class="swiper-pagination"></div>
+        <!-- Add Arrows -->
+        <div class="swiper-button-next"></div>
+        <div class="swiper-button-prev"></div>
+    </div>
+
+    <h3 id="genrehead">Detective & Mystery</h3>
+    <div class="swiper-container">
+        <div class="swiper-wrapper">
+            {% for book in mystery %}
+            <div class="swiper-slide">
+                <a href="{{ url_for('books', isbn=book.isbn) }}">
+                    {% if book.imagelink != None %}
+                    <img src="{{book.imagelink}}" alt="Book Cover">
+                    {% else %}
+                    <img src="../static/bookcover.png" alt="Book Cover">
+                    {% endif %}
+                    <div id="contents">
+                        <h3>{{ book.title }}</h3>
+                        <p class="detail author"><i>by {{ book.author }}</i></p>
+                        <p class="bookhead">ISBN</p>
+                        <p class="detail">{{ book.isbn }}</p>
+                        <p class="bookhead">YEAR</p>
+                        <p class="detail">{{ book.year }}</p>
+                    </div>
+                </a>
+            </div>
+            {% endfor %}
+            {% if mystery|length == 7 %}
+            <div id="seemore" class="swiper-slide">
+                <a href="{{url_for('see_all', genre = 'mystery')}}">See All</a>
+            </div>
+            {% endif %}
+        </div>
+        <!-- Add Pagination -->
+        <div class="swiper-pagination"></div>
+        <!-- Add Arrows -->
+        <div class="swiper-button-next"></div>
+        <div class="swiper-button-prev"></div>
+    </div>
+
+    <h3 id="genrehead">Historical Fiction</h3>
+    <div class="swiper-container">
+        <div class="swiper-wrapper">
+            {% for book in history %}
+            <div class="swiper-slide">
+                <a href="{{ url_for('books', isbn=book.isbn) }}">
+                    {% if book.imagelink != None %}
+                    <img src="{{book.imagelink}}" alt="Book Cover">
+                    {% else %}
+                    <img src="../static/bookcover.png" alt="Book Cover">
+                    {% endif %}
+                    <div id="contents">
+                        <h3>{{ book.title }}</h3>
+                        <p class="detail author"><i>by {{ book.author }}</i></p>
+                        <p class="bookhead">ISBN</p>
+                        <p class="detail">{{ book.isbn }}</p>
+                        <p class="bookhead">YEAR</p>
+                        <p class="detail">{{ book.year }}</p>
+                    </div>
+                </a>
+            </div>
+            {% endfor %}
+            {% if history|length == 7 %}
+            <div id="seemore" class="swiper-slide">
+                <a href="{{url_for('see_all', genre = 'history')}}">See All</a>
+            </div>
+            {% endif %}
+        </div>
+        <!-- Add Pagination -->
+        <div class="swiper-pagination"></div>
+        <!-- Add Arrows -->
+        <div class="swiper-button-next"></div>
+        <div class="swiper-button-prev"></div>
+    </div>
+
+    <h3 id="genrehead">Fantasy | Speculative</h3>
+    <div class="swiper-container">
+        <div class="swiper-wrapper">
+            {% for book in fantasy %}
+            <div class="swiper-slide">
+                <a href="{{ url_for('books', isbn=book.isbn) }}">
+                    {% if book.imagelink != None %}
+                    <img src="{{book.imagelink}}" alt="Book Cover">
+                    {% else %}
+                    <img src="../static/bookcover.png" alt="Book Cover">
+                    {% endif %}
+                    <div id="contents">
+                        <h3>{{ book.title }}</h3>
+                        <p class="detail author"><i>by {{ book.author }}</i></p>
+                        <p class="bookhead">ISBN</p>
+                        <p class="detail">{{ book.isbn }}</p>
+                        <p class="bookhead">YEAR</p>
+                        <p class="detail">{{ book.year }}</p>
+                    </div>
+                </a>
+            </div>
+            {% endfor %}
+            {% if fantasy|length == 7 %}
+            <div id="seemore" class="swiper-slide">
+                <a href="{{url_for('see_all', genre = 'fantasy')}}">See All</a>
+            </div>
+            {% endif %}
+        </div>
+        <!-- Add Pagination -->
+        <div class="swiper-pagination"></div>
+        <!-- Add Arrows -->
+        <div class="swiper-button-next"></div>
+        <div class="swiper-button-prev"></div>
+    </div>
+
+    <h3 id="genrehead">Poetry</h3>
+    <div class="swiper-container">
+        <div class="swiper-wrapper">
+            {% for book in poetry %}
+            <div class="swiper-slide">
+                <a href="{{ url_for('books', isbn=book.isbn) }}">
+                    {% if book.imagelink != None %}
+                    <img src="{{book.imagelink}}" alt="Book Cover">
+                    {% else %}
+                    <img src="../static/bookcover.png" alt="Book Cover">
+                    {% endif %}
+                    <div id="contents">
+                        <h3>{{ book.title }}</h3>
+                        <p class="detail author"><i>by {{ book.author }}</i></p>
+                        <p class="bookhead">ISBN</p>
+                        <p class="detail">{{ book.isbn }}</p>
+                        <p class="bookhead">YEAR</p>
+                        <p class="detail">{{ book.year }}</p>
+                    </div>
+                </a>
+            </div>
+            {% endfor %}
+            {% if poetry|length == 7 %}
+            <div id="seemore" class="swiper-slide">
+                <a href="{{url_for('see_all', genre = 'poetry')}}">See All</a>
+            </div>
+            {% endif %}
+        </div>
+        <!-- Add Pagination -->
+        <div class="swiper-pagination"></div>
+        <!-- Add Arrows -->
+        <div class="swiper-button-next"></div>
+        <div class="swiper-button-prev"></div>
+    </div>
+
+    <h3 id="genrehead">General Fiction</h3>
+    <div class="swiper-container">
+        <div class="swiper-wrapper">
+            {% for book in general_fiction %}
+            <div class="swiper-slide">
+                <a href="{{ url_for('books', isbn=book.isbn) }}">
+                    {% if book.imagelink != None %}
+                    <img src="{{book.imagelink}}" alt="Book Cover">
+                    {% else %}
+                    <img src="../static/bookcover.png" alt="Book Cover">
+                    {% endif %}
+                    <div id="contents">
+                        <h3>{{ book.title }}</h3>
+                        <p class="detail author"><i>by {{ book.author }}</i></p>
+                        <p class="bookhead">ISBN</p>
+                        <p class="detail">{{ book.isbn }}</p>
+                        <p class="bookhead">YEAR</p>
+                        <p class="detail">{{ book.year }}</p>
+                    </div>
+                </a>
+            </div>
+            {% endfor %}
+            {% if general_fiction|length == 7 %}
+            <div id="seemore" class="swiper-slide">
+                <a href="{{url_for('see_all', genre = 'fiction')}}">See All</a>
+            </div>
+            {% endif %}
+        </div>
+        <!-- Add Pagination -->
+        <div class="swiper-pagination"></div>
+        <!-- Add Arrows -->
+        <div class="swiper-button-next"></div>
+        <div class="swiper-button-prev"></div>
+    </div>
+
+    {% elif mybooks|length <= 0 %}
+    <h3 class="sorry" style="text-align: center;">Sorry, no book found!</h3>
+    {% endif %}
+    <br>
+</body>
+
+<script src="../static/script/swiper.min.js"></script>
+<script>
+    var swiper = new Swiper('.swiper-container', {
+        effect: 'coverflow',
+        grabCursor: true,
+        centeredSlides: true,
+        slidesPerView: 3,
+        coverflowEffect: {
+            rotate: 50,
+            stretch: 0,
+            depth: 100,
+            modifier: 1,
+            slideShadows: true,
+        },
+        navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+        },
+          pagination: {
+            el: '.swiper-pagination',
+          },
+    });
+</script>
+</html>

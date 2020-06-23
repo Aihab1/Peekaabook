@@ -1,0 +1,250 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Pirata+One|Rubik:900");
+@import url("https://fonts.googleapis.com/css2?family=Clicker+Script&display=swap");
+$mycolor: #30271b;
+$beige: #ddc3a5;
+$black-brown: #201e20;
+$tan: #e0a96d;
+* {
+  overflow-x: hidden;
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: "Roboto", sans-serif;
+}
+body {
+  background: black;
+}
+#background {
+  position: absolute;
+  // bottom: -80%;
+  top: -20%;
+  z-index: -1;
+  -webkit-box-reflect: below -1px -webkit-gradient(linear, left top, left bottom, from(transparent), color-stop(57%, transparent), to(#fafafa));
+}
+#navbar {
+  background: black;
+  opacity: 0.6;
+  #logo {
+    display: flex;
+    align-items: center;
+    font-family: "Pirata One", sans-serif;
+    font-size: 60px;
+    text-shadow: black -5px 5px 5px;
+    color: $tan;
+    span {
+      // opacity: 0.6;
+      font-family: "Clicker Script", sans-serif;
+      font-style: italic;
+      font-size: 30px;
+      margin-left: 15px;
+      padding-top: 5px;
+      text-shadow: black -2px 2px 2px;
+      color: $beige;
+    }
+  }
+  #login {
+    // opacity: 0.6;
+    text-shadow: black -3px 3px 2px;
+    font-size: 35px;
+    color: $tan;
+  }
+  #login:hover,
+  #logo:hover {
+    opacity: 1;
+    color: $beige;
+    filter: sepia(1);
+  }
+  a {
+    text-decoration: none;
+    color: white;
+    font-size: 1.5rem;
+    font-family: "Pirata One", sans-serif;
+  }
+  li {
+    list-style: none;
+  }
+  ul {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 90px;
+  }
+}
+#intro {
+  margin-top: 50px;
+  margin-bottom: 70px;
+  height: 500px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  pointer-events: none;
+  opacity: 0.8;
+  filter: sepia(1);
+  h1 {
+    color: white;
+    text-align: center;
+    font-size: 8rem;
+    font-family: "Pirata One", sans-serif;
+    text-shadow: black 5px 5px 5px;
+  }
+  h2 {
+    color: white;
+    text-align: center;
+    font-size: 4rem;
+    width: 80%;
+    font-family: "Pirata One", sans-serif;
+    text-shadow: black 5px 5px 5px;
+  }
+}
+#quotes {
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  background: black;  
+  height: 500px;
+  opacity: 0.9;
+  h2 {
+    width: 90%;
+    font-size: 4rem;
+    color: $beige;
+    filter: sepia(1);
+  }
+  p {
+    font-size: 2.5rem;
+    width: 70%;
+    color: $tan;
+  }
+}
+#get-started {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  height: 650px;
+  opacity: 0.8;
+  p {
+    width: 70%;
+    color: white;
+    font-size: 2.5rem;
+    pointer-events: none;
+  }
+  a {
+    text-decoration: none;
+    color: white;
+    font-size: 6rem;
+  }
+  a:hover {
+    color: $tan;
+  }
+}
+@media only screen and (max-width: 948px) {
+  #background {
+    top: 0;
+  }
+  #intro {
+    height: 350px;
+    h1 {
+      font-size: 6rem;
+    }
+    h2 {
+      font-size: 3rem;
+    }
+  }
+  #quotes {
+    height: 350px;
+    h2 {
+      font-size: 3rem;
+    }
+    p {
+      font-size: 1.75rem;
+    }
+  }
+  #get-started {
+    height: 450px;
+    a {
+      font-size: 4rem;
+    }
+    p {
+      font-size: 1.75rem;
+      width: 85%;
+    }
+  }
+}
+@media only screen and (max-width: 700px) {
+  #quotes {
+    height: 250px;
+    h2 {
+      font-size: 2.3rem;
+    }
+    p {
+      font-size: 1.4rem;
+    }
+  }
+  #get-started {
+    height: 300px;
+    a {
+      font-size: 3.5rem;
+    }
+    p {
+      font-size: 1.4rem;
+      width: 85%;
+    }
+  }
+  #navbar {
+    #logo {
+      font-size: 50px;
+      span {
+        font-size: 25px;
+      }
+    }
+    #login {
+      font-size: 30px;
+    }
+  }
+  #intro {
+    height: 280px;
+    h1 {
+      font-size: 5rem;
+    }
+    h2 {
+      font-size: 2.75rem;
+    }
+    margin-top: 25px;
+    margin-bottom: 35px;
+  }
+}
+@media only screen and (max-width: 450px){
+  #intro {
+    h1 {
+      font-size: 4.25rem;
+    }
+    h2 {
+      font-size: 2.2rem;
+    }
+  }
+  #get-started {
+    height: 300px;
+    a {
+      font-size: 3rem;
+    }
+    p {
+      font-size: 1.4rem;
+      width: 85%;
+    }
+  }
+  #quotes {
+    height: 185px;
+    h2 {
+      font-size: 1.75rem;
+    }
+    p {
+      font-size: 1rem;
+    }
+  }
+}

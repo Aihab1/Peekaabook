@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Peek AA Book</title>
+    <link href="../static/styles/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="../static/styles/index.css">
+</head>
+<body>
+    <div id="navbar">
+        <ul>
+            <li><a id="logo" href="{{ url_for('index') }}">PB</a></li>
+            <li><a id="login" href="{{ url_for('login') }}">{{login_text}}</a></li>
+        </ul>
+    </div>
+    <div id="background">
+        <img src="../static/background.jpg" width="100%">
+    </div>
+    <div id="intro">
+        <h1>Welcome</h1>
+        <h2>We are a community of book collectors!</h2>
+    </div>
+    <div id="quotes">
+        <h2 data-aos="fade-right">{{quote[0]}}</h2>
+        <p data-aos="zoom-out-left">{{quote[1]}}</p>
+    </div>
+    <div id="get-started">
+        <p>We have a collection of more than a thousand books. Join now and start reviewing!</p>
+        <div data-tilt data-tilt-reverse="true" data-tilt-full-page-listening>
+        <a href="{{ url_for('register') }}">Get Started</a>
+        </div>
+    </div>
+</body>
+<script type="text/javascript" src="../static/script/vanilla-tilt.js"></script>
+<script type="text/javascript" src="../static/script/aos.js"></script>
+<script>
+    AOS.init();
+</script>
+</html>

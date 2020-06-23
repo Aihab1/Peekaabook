@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{details.title}}</title>
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../static/styles/book.css">
+</head>
+
+<body class="body">
+    <div id="navbar">
+        <div class="nav-links">
+            <ul>
+                <li><a id="logo" href="{{ url_for('index') }}">PB</a></li>
+                <li>
+                    <form action="{{ url_for('search') }}" method="GET" spellcheck="false">
+                        <div id="form">
+                            <input id="searchbar" type="text" name="search" placeholder="ISBN/Title/Author"
+                                autocomplete="off" required>
+                            <button id="search" type="submit">
+                                <svg class="bi bi-search" width="20px" height="20px" viewBox="0 0 16 16"
+                                    fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd"
+                                        d="M10.442 10.442a1 1 0 0 1 1.415 0l3.85 3.85a1 1 0 0 1-1.414 1.415l-3.85-3.85a1 1 0 0 1 0-1.415z" />
+                                    <path fill-rule="evenodd"
+                                        d="M6.5 12a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11zM13 6.5a6.5 6.5 0 1 1-13 0 6.5 6.5 0 0 1 13 0z" />
+                                </svg>
+                            </button>
+                        </div>
+                    </form>
+                </li>
+                <div id="elements">
+                    <li><a class="nav-element1" href="{{ url_for('profile') }}">{{username}}</a></li>
+                    <li><a class="nav-element2" href="{{ url_for('login') }}">Dashboard</a></li>
+                    <li><a class="nav-element3" href="{{ url_for('logout') }}">Log out</a></li>
+                </div>
+            </ul>
+        </div>
+        <div class="hamburger">
+            <div class="line line-top"></div>
+            <div class="line line-mid"></div>
+            <div class="line line-bottom"></div>
+        </div>
+    </div>
+    </div>
+    <div id="outerdiv">
+        <div id="bookimage">
+            {% if details.imagelink != None %}
+            <a href="{{previewLink}}" target="_blank"><img src="{{details.imagelink}}" width="150" height="234"
+                    alt="Book Cover"></a>
+            {% else %}
+            <div style="position: relative; width:150px;height:234px; overflow: wrap;">
+                <img src="../static/bookcover.png" width="150" height="234">
+                <div
+                    style="position:absolute; top:0; left: 0; width: 153px; height: 234px; display: flex; align-items: center;">
+                    <p
+                        style="z-index: 1; font-size:1.2rem; text-transform:uppercase; font-weight: bold; font-family:Helvetica, sans-serif; opacity: 0.8; pointer-events: none; text-align: center; width: 100%;">
+                        {{details.title}}
+                    </p>
+                </div>
+            </div>
+            {% endif %}
+            <br>
+            <p style="text-align: center;"><b>YEAR</b>: {{details.year}}</p>
+            <p style="text-align: center;"><b>ISBN</b>: {{details.isbn}}</p>
+            {% if details.genre != None %}
+            <p style="text-align: center;"><b>GENRE</b>: {{details.genre}}</p>
+            {% endif %}
+            <br>
+            {% if wishlisted != True %}
+            <a class="wish" href="{{ url_for('add_to_wishlist', isbn=details.isbn) }}">Add to wishlist</a>
+            {% endif %}
+
+            {% if wishlisted == True %}
+            <a class="wish" href="{{ url_for('remove_from_wishlist', isbn=details.isbn) }}">Remove from wishlist</a>
+            {% endif %}
+        </div>
+        <div id="bookabout">
+            <h1>{{details.title}}</h1>
+            <h2>by {{details.author}}</h2>
+            <br>
+            {% if description != None %}
+            <p id="description">{{description}}</p>
+            {% endif %}
+            <br>
+            <div id="rating-container">
+                <div id="rating1">
+                    <h1>Community Rating</h1>
+                    {% if review_count == 0 %}
+                    <h2>Unrated</h2>
+                    {% else %}
+                    <h2>{{ average_score }} out of 5</h2>
+                    {% endif %}
+                    <p>{{ review_count }} user ratings</p>
+                </div>
+                <div id="rating2">
+                    <h1>Rating by Goodreads</h1>
+                    <h2>{{ avg_rating }} out of 5</h2>
+                    <p>{{ rating_count }} user ratings</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="form-container">
+        {% if reviewed != True %}
+        <h1 class="commenthead">Write a Review</h1>
+        <form action="{{ url_for('write_review', isbn=details.isbn) }}" method="POST">
+            <div class="starinput">
+                <div class="mystars">
+                    <input class="star star-5" id="star-5" type="radio" name="star" value="5" />
+                    <label class="star star-5" for="star-5"></label>
+                    <input class="star star-4" id="star-4" type="radio" name="star" value="4" />
+                    <label class="star star-4" for="star-4"></label>
+                    <input class="star star-3" id="star-3" type="radio" name="star" value="3" />
+                    <label class="star star-3" for="star-3"></label>
+                    <input class="star star-2" id="star-2" type="radio" name="star" value="2" />
+                    <label class="star star-2" for="star-2"></label>
+                    <input class="star star-1" id="star-1" type="radio" name="star" value="1" checked />
+                    <label class="star star-1" for="star-1"></label>
+                </div>
+            </div>
+            <div id="text-area">
+                <textarea name="review" rows=10 cols=80% placeholder="Enter your review here..."
+                    required>{% if old_review != None %}{{ old_review }}{% endif %}</textarea>
+                <button type="submit">Submit</button>
+            </div>
+        </form>
+        {% endif %}
+
+        {% if reviewed == True %}
+        <h1 class="commenthead">Your Review</h1>
+        {% endif %}
+        {% for areview in allreviews %}
+        {% if areview.username|capitalize == username %}
+        <div id="your-review">
+            <section class="name-star-datetime">
+                <div class="name-star">
+                    <h2 style="margin-right: 20px;"><b>{{ areview.username|capitalize }}</b></h2>
+                    <div class="stars">
+                        {% for i in range(0, areview.rating) %}
+                        <svg class="bi bi-star-fill" width="1em" height="1em" viewBox="0 0 16 16" fill="#ffae42"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
+                        </svg>
+                        {% endfor %}
+
+                        {% for i in range(0, 5-areview.rating) %}
+                        <svg class="bi bi-star" width="1em" height="1em" viewBox="0 0 16 16" fill="#ffae42"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd"
+                                d="M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.523-3.356c.329-.314.158-.888-.283-.95l-4.898-.696L8.465.792a.513.513 0 0 0-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767l-3.686 1.894.694-3.957a.565.565 0 0 0-.163-.505L1.71 6.745l4.052-.576a.525.525 0 0 0 .393-.288l1.847-3.658 1.846 3.658a.525.525 0 0 0 .393.288l4.052.575-2.906 2.77a.564.564 0 0 0-.163.506l.694 3.957-3.686-1.894a.503.503 0 0 0-.461 0z" />
+                        </svg>
+                        {% endfor %}
+                    </div>
+                </div>
+                <div class="datetime">
+                    <p>{{ areview.datetime }}</p>
+                </div>
+            </section>
+            <br>
+            <div class="review-edit-delete">
+                <p>{{ areview.review }}</p>
+                <div class="edit-delete">
+                    <a href="{{ url_for('edit_review', isbn=details.isbn) }}">Edit</a>
+                    <a href="{{ url_for('delete_review', isbn=details.isbn) }}"
+                        onclick="return confirm('Are you sure?');" style="margin-left: 20px;">Delete</a>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+        {% endfor %}
+
+        <br>
+        {% if (allreviews|length > 0 and reviewed != True) or (allreviews|length > 1 and reviewed == True) %}
+        <h1 class="commenthead">What people are saying</h1>
+        {% endif %}
+
+        {% for areview in allreviews %}
+        {% if areview.username|capitalize != username %}
+        <div id="all-reviews">
+            <section class="name-star-datetime">
+                <div class="name-star">
+                    <h2 style="margin-right: 20px;"><b>{{ areview.username|capitalize }}</b></h2>
+                    <div class="stars">
+                        {% for i in range(0, areview.rating) %}
+                        <svg class="bi bi-star-fill" width="1em" height="1em" viewBox="0 0 16 16" fill="#ffae42"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
+                        </svg>
+                        {% endfor %}
+                        {% for i in range(0, 5-areview.rating) %}
+                        <svg class="bi bi-star" width="1em" height="1em" viewBox="0 0 16 16" fill="#ffae42"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd"
+                                d="M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.523-3.356c.329-.314.158-.888-.283-.95l-4.898-.696L8.465.792a.513.513 0 0 0-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767l-3.686 1.894.694-3.957a.565.565 0 0 0-.163-.505L1.71 6.745l4.052-.576a.525.525 0 0 0 .393-.288l1.847-3.658 1.846 3.658a.525.525 0 0 0 .393.288l4.052.575-2.906 2.77a.564.564 0 0 0-.163.506l.694 3.957-3.686-1.894a.503.503 0 0 0-.461 0z" />
+                        </svg>
+                        {% endfor %}
+                    </div>
+                </div>
+                <div class="datetime">
+                    <p>{{ areview.datetime }}</p>
+                </div>
+            </section>
+            <br>
+            <p>{{ areview.review }}</p>
+        </div>
+        {% endif %}
+        {% endfor %}
+    </div>
+</body>
+<script>
+    const hamburger = document.querySelector('.hamburger');
+    const navLinks = document.querySelector(".nav-links");
+    const links = document.querySelectorAll(".nav-links li");
+    const body = document.querySelector(".body");
+
+    hamburger.addEventListener("click", ()=>{
+        navLinks.classList.toggle("open");
+        body.classList.toggle("open");
+        hamburger.classList.toggle("open");
+    });
+</script>
+</html>

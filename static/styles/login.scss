@@ -1,0 +1,113 @@
+@import "reference.scss";
+
+#logo {
+  margin-top: 50px;  
+  a {
+    text-decoration: none;
+    color: white;
+    font-size: 6rem;
+    font-family: "Pirata One", sans-serif;
+    text-shadow: -5px 5px 3px black;
+  }
+}
+#background {
+  background: url(../background2.jpg);
+  background-size: 100% 100%; 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 100px;
+  -webkit-box-reflect: below -3px -webkit-gradient(linear, left top, left bottom, from(black), to(#090909));
+}
+form{
+  margin-top: 30px;
+  input{
+    padding: 10px 40px;
+    height: 40px;
+    width: 300px;
+    outline: none;
+    background: white;
+    border: none;
+    border-radius: 20px;
+  }
+  button{
+    padding: 5px 40px;
+    height: 40px;
+    width: 300px;
+    outline: none;
+    background: #090909;
+    color: white;
+    border-radius: 20px;
+    border: 2px solid white;
+  }
+  button:hover{
+    background: white;
+    color: black;
+  }
+  button:active,
+  button:focus { 
+    outline-style: none; 
+  }
+  #username, #password{
+    position: relative;
+  }
+  .icon{
+    position: absolute;
+    top: 7px;
+    left: 13px;
+  }
+  p{
+    margin-top: 20px;
+    a{
+      color: white;
+    }
+    a:hover{
+      color: white;
+    }
+  }
+}
+
+#container{
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: linear-gradient(30deg, #000000, #090909);
+  opacity: 0.8;
+  width: 500px;
+  height: 570px;
+  border-radius: 6px;
+  box-shadow: 7px 7px 5px black;
+}
+
+@media only screen and (max-width: 565px){
+  *{
+    overflow-x: hidden;
+  }
+  #container{
+    background: transparent;
+    box-shadow: none;
+  }
+  form{
+    button{
+      background: transparent;
+    }
+    p{
+      color: white;
+      a{
+        text-decoration: underline;
+      }
+    }
+  }
+}
+@media only screen and (max-width: 415px){
+  form{
+    input, button{
+      width: 85vw;
+    }
+  }
+  #background{
+    padding: 50px;  
+  }
+}

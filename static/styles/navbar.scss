@@ -1,0 +1,55 @@
+$mycolor: #30271B;
+$beige: #ddc3a5;
+$black-brown: #201e20;
+$tan: #E0A96D;
+#navbar {
+    background: $black-brown;
+    opacity: 1;
+    #logo{
+      display: flex;
+      align-items: center;
+      font-family: 'Pirata One', sans-serif;
+      font-size: 60px;
+      text-shadow: black -5px 5px 2px;
+      color: $tan;
+      // span{
+      // opacity: 0.6;
+      // font-family: 'Clicker Script', sans-serif;
+      // font-style: italic;
+      // font-size: 30px;
+      // margin-left: 15px;
+      // padding-top: 5px;
+      // text-shadow: black -2px 2px 2px;
+      // }
+    }
+    .nav-element1:hover, .nav-element2:hover, .nav-element3:hover{
+      opacity: 1;
+      filter: sepia(1);
+    }
+    #logo:hover{
+      opacity: 1;
+      filter: sepia(1);
+      color: $beige;
+    }
+    a{
+      text-decoration: none;
+      color: $beige;
+    }
+    a:hover{
+      color: $beige;
+    }
+    li {
+      list-style: none;
+    }
+    ul {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      height: 90px;
+    }
+    #elements{
+      display: flex;
+      justify-content: space-around;
+      width: 40%;
+    }
+}

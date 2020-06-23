@@ -1,0 +1,663 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Pirata+One|Rubik:900");
+@import url("https://fonts.googleapis.com/css2?family=Clicker+Script&display=swap");
+* {
+  padding: 0;
+  margin: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  font-family: "Roboto", sans-serif;
+}
+
+#navbar {
+  background: #201e20;
+  opacity: 1;
+}
+
+#navbar #logo {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  font-family: 'Pirata One', sans-serif;
+  font-size: 60px;
+  text-shadow: black -5px 5px 2px;
+  color: #E0A96D;
+}
+
+#navbar .nav-element1:hover, #navbar .nav-element2:hover, #navbar .nav-element3:hover {
+  opacity: 1;
+  -webkit-filter: sepia(1);
+          filter: sepia(1);
+}
+
+#navbar #logo:hover {
+  opacity: 1;
+  -webkit-filter: sepia(1);
+          filter: sepia(1);
+  color: #ddc3a5;
+}
+
+#navbar a {
+  text-decoration: none;
+  color: #ddc3a5;
+}
+
+#navbar a:hover {
+  color: #ddc3a5;
+}
+
+#navbar li {
+  list-style: none;
+}
+
+#navbar ul {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  height: 90px;
+}
+
+#navbar #elements {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  width: 40%;
+}
+
+.nav-element1,
+.nav-element3,
+.nav-element2 {
+  opacity: 0.8;
+  font-size: 20px;
+  font-family: "Roboto", sans-serif;
+  color: #ddc3a5;
+  text-shadow: -2px 2px 2px black;
+}
+
+body {
+  color: #201e20;
+}
+
+form {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+form #form {
+  position: relative;
+}
+
+form #searchbar {
+  padding: 5px 40px;
+  height: 50px;
+  outline: none;
+  border-radius: 30px;
+  font-size: 1.2rem;
+  text-align: center;
+  background: white;
+  border: 2px solid #201e20;
+  width: 100%;
+  color: #201e20;
+}
+
+form #search {
+  position: absolute;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+  right: 20px;
+  background: transparent;
+  border: none;
+  color: #E0A96D;
+  font-size: 20px;
+}
+
+form #search:hover {
+  color: #ddc3a5;
+  -webkit-filter: sepia(1);
+          filter: sepia(1);
+}
+
+form input:active,
+form input:focus,
+form button:active,
+form button:focus {
+  outline-style: none;
+}
+
+::-webkit-input-placeholder {
+  color: #201e20;
+  opacity: 0.9;
+}
+
+:-ms-input-placeholder {
+  color: #201e20;
+  opacity: 0.9;
+}
+
+::-ms-input-placeholder {
+  color: #201e20;
+  opacity: 0.9;
+}
+
+::placeholder {
+  color: #201e20;
+  opacity: 0.9;
+}
+
+.starinput {
+  width: 100%;
+}
+
+div.mystars {
+  margin-left: -10px;
+  display: inline-block;
+}
+
+input.star {
+  display: none;
+}
+
+label.star {
+  float: right;
+  padding: 10px;
+  font-size: 30px;
+  color: #444;
+  -webkit-transition: all 0.2s;
+  transition: all 0.2s;
+}
+
+input.star:checked ~ label.star:before {
+  content: "\f005";
+  color: #fd4;
+  -webkit-transition: all 0.25s;
+  transition: all 0.25s;
+}
+
+input.star-5:checked ~ label.star:before {
+  color: #fe7;
+  text-shadow: 0 0 5px #ffae42;
+}
+
+input.star-1:checked ~ label.star:before {
+  color: #f62;
+}
+
+label.star:hover {
+  -webkit-transform: rotate(-15deg) scale(1.3);
+          transform: rotate(-15deg) scale(1.3);
+}
+
+label.star:before {
+  content: "\f006";
+  font-family: FontAwesome;
+}
+
+#outerdiv {
+  padding: 50px 15px 50px 15px;
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  width: 100%;
+}
+
+#outerdiv #bookimage {
+  width: 200px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+#outerdiv #bookabout {
+  width: 80%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+#outerdiv #bookabout #rating-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+}
+
+#outerdiv #bookabout #rating-container #rating1 {
+  margin-right: 30px;
+}
+
+#form-container {
+  padding: 0px 60px 60px 60px;
+}
+
+#form-container h1 {
+  font-weight: lighter;
+}
+
+#your-review,
+#all-reviews {
+  padding: 15px;
+  margin: 15px 0px;
+  -webkit-box-shadow: 4px 4px 15px #bbb, 0px 0px 10px #bbb;
+          box-shadow: 4px 4px 15px #bbb, 0px 0px 10px #bbb;
+}
+
+a {
+  text-decoration: none;
+  color: #007aff;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+section {
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+section .name-star {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 50%;
+}
+
+section .name-star .stars {
+  padding-top: 6px;
+}
+
+section .datetime {
+  opacity: 0.6;
+  position: absolute;
+  top: 0;
+  right: 0;
+  font-size: 0.8rem;
+  pointer-events: none;
+}
+
+.review-edit-delete {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+}
+
+.review-edit-delete p {
+  width: 70%;
+}
+
+.review-edit-delete .edit-delete {
+  width: 30%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+  -webkit-box-align: end;
+      -ms-flex-align: end;
+          align-items: flex-end;
+}
+
+textarea {
+  resize: none;
+  padding: 15px;
+  -webkit-box-shadow: 4px 4px 15px #bbb, 0px 0px 10px #bbb;
+          box-shadow: 4px 4px 15px #bbb, 0px 0px 10px #bbb;
+  outline: none;
+  border: none;
+  width: 100%;
+  font-size: 1rem;
+}
+
+textarea:active,
+textarea:focus {
+  outline: none;
+}
+
+#text-area {
+  width: 100%;
+  position: relative;
+  margin-bottom: 15px;
+}
+
+#text-area button {
+  background: transparent;
+  text-decoration: none;
+  color: #007aff;
+  font-size: 1rem;
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  border: none;
+  outline: none;
+}
+
+#text-area button:focus,
+#text-area button:active {
+  outline: none;
+}
+
+#text-area button:hover {
+  text-decoration: underline;
+}
+
+@media screen and (max-width: 800px) {
+  #outerdiv #bookabout {
+    margin-top: 20px;
+    width: 95%;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    text-align: center;
+  }
+  #outerdiv #bookabout #rating-container {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+    text-align: center;
+    width: 100%;
+    -ms-flex-pack: distribute;
+        justify-content: space-around;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+  }
+  #outerdiv #bookabout #rating-container #rating1,
+  #outerdiv #bookabout #rating-container #rating2 {
+    margin: 10px;
+  }
+  .line {
+    width: 30px;
+    height: 3px;
+    background: white;
+    margin: 5px;
+  }
+  .hamburger {
+    position: absolute;
+    cursor: pointer;
+    right: 5%;
+    top: 50%;
+    -webkit-transform: translate(-5%, -50%);
+            transform: translate(-5%, -50%);
+    z-index: 3;
+  }
+  .hamburger .line-top,
+  .hamburger .line-mid,
+  .hamburger .line-bottom {
+    -webkit-transition: all 1s ease-out;
+    transition: all 1s ease-out;
+  }
+  .nav-links.open {
+    clip-path: circle(1500px at 90% -10%);
+    -webkit-clip-path: circle(1500px at 90% -10%);
+    pointer-events: all;
+  }
+  .body.open {
+    overflow: hidden;
+  }
+  .hamburger.open .line-top {
+    -webkit-transform: rotate(405deg);
+            transform: rotate(405deg);
+    position: absolute;
+    top: 25%;
+  }
+  .hamburger.open .line-mid {
+    -webkit-transform: translateX(-100%);
+            transform: translateX(-100%);
+    opacity: 0;
+    pointer-events: none;
+  }
+  .hamburger.open .line-bottom {
+    -webkit-transform: rotate(495deg);
+            transform: rotate(495deg);
+    position: absolute;
+    top: 25%;
+  }
+  .nav-links {
+    width: 100%;
+    height: 100vh;
+    background: #201e20;
+    position: fixed;
+    top: 0;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    z-index: 2;
+    -webkit-transition: all 1s ease-out;
+    transition: all 1s ease-out;
+    clip-path: circle(0px at 90% -10%);
+    -webkit-clip-path: circle(0px at 90% -10%);
+    pointer-events: none;
+  }
+  .nav-links ul {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    width: 100%;
+    height: 100vh;
+  }
+  .nav-links ul #elements {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+  }
+  #navbar {
+    height: 60px;
+    background: #201e20;
+    position: relative;
+  }
+  #navbar #logo {
+    font-size: 5.5rem;
+  }
+  #navbar li {
+    margin: 3vh 0;
+  }
+}
+
+@media screen and (max-height: 350px) and (max-width: 800px) {
+  .nav-links ul #elements {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
+    -webkit-box-pack: space-evenly;
+        -ms-flex-pack: space-evenly;
+            justify-content: space-evenly;
+  }
+  #navbar #elements {
+    width: 100%;
+  }
+  #navbar #logo {
+    font-size: 4.5rem;
+  }
+}
+
+@media screen and (max-width: 415px) {
+  form #searchbar {
+    width: 80vw;
+    font-size: 1rem;
+  }
+  section {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-align: start;
+        -ms-flex-align: start;
+            align-items: flex-start;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+  }
+  section .datetime {
+    position: static;
+  }
+  section .name-star {
+    width: 100%;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-align: start;
+        -ms-flex-align: start;
+            align-items: flex-start;
+  }
+  .review-edit-delete {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+  .review-edit-delete p {
+    width: 100%;
+  }
+  .review-edit-delete .edit-delete {
+    margin-top: 15px;
+    width: 100%;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: end;
+        -ms-flex-pack: end;
+            justify-content: flex-end;
+    -webkit-box-align: end;
+        -ms-flex-align: end;
+            align-items: flex-end;
+  }
+  #outer-review-div {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    padding: 15px;
+    margin: 15px 15px;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+  }
+  #form-container {
+    padding: 0px 20px 20px 20px;
+  }
+  #form-container h1 {
+    text-align: center;
+    width: 100%;
+    font-size: 2rem;
+    margin-bottom: 20px;
+  }
+  .starinput {
+    text-align: center;
+  }
+  label.star {
+    font-size: 25px;
+    padding: 5px;
+  }
+}
+/*# sourceMappingURL=book.css.map */

@@ -1,0 +1,170 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Pirata+One|Rubik:900");
+@import url("https://fonts.googleapis.com/css2?family=Clicker+Script&display=swap");
+* {
+  padding: 0;
+  margin: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  font-family: "Roboto", sans-serif;
+}
+
+#logo {
+  margin-top: 50px;
+}
+
+#logo a {
+  text-decoration: none;
+  color: white;
+  font-size: 6rem;
+  font-family: "Pirata One", sans-serif;
+  text-shadow: -5px 5px 3px black;
+}
+
+#background {
+  background: url(../background2.jpg);
+  background-size: 100% 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  padding: 100px;
+  -webkit-box-reflect: below -3px -webkit-gradient(linear, left top, left bottom, from(black), to(#090909));
+}
+
+form {
+  margin-top: 30px;
+}
+
+form input {
+  padding: 10px 40px;
+  height: 40px;
+  width: 300px;
+  outline: none;
+  background: white;
+  border: none;
+  border-radius: 20px;
+}
+
+form button {
+  padding: 5px 40px;
+  height: 40px;
+  width: 300px;
+  outline: none;
+  background: #090909;
+  color: white;
+  border-radius: 20px;
+  border: 2px solid white;
+}
+
+form button:hover {
+  background: white;
+  color: black;
+}
+
+form button:active,
+form button:focus {
+  outline-style: none;
+}
+
+form #username, form #password {
+  position: relative;
+}
+
+form .icon {
+  position: absolute;
+  top: 7px;
+  left: 13px;
+}
+
+form p {
+  margin-top: 20px;
+}
+
+form p a {
+  color: white;
+}
+
+form p a:hover {
+  color: white;
+}
+
+#container {
+  text-align: center;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  background: linear-gradient(30deg, #000000, #090909);
+  opacity: 0.8;
+  width: 500px;
+  height: 570px;
+  border-radius: 6px;
+  -webkit-box-shadow: 7px 7px 5px black;
+          box-shadow: 7px 7px 5px black;
+}
+
+@media only screen and (max-width: 565px) {
+  * {
+    overflow-x: hidden;
+  }
+  #container {
+    background: transparent;
+    -webkit-box-shadow: none;
+            box-shadow: none;
+  }
+  form button {
+    background: transparent;
+  }
+  form p {
+    color: white;
+  }
+  form p a {
+    text-decoration: underline;
+  }
+}
+
+@media only screen and (max-width: 415px) {
+  form input, form button {
+    width: 85vw;
+  }
+  #background {
+    padding: 50px;
+  }
+}
+
+form #username,
+form #password,
+form #password2,
+form #fullname {
+  position: relative;
+}
+
+form button:active,
+form button:focus {
+  outline-style: none;
+}
+
+#logo {
+  margin-top: 30px;
+}
+
+#container {
+  height: 600px;
+}
+/*# sourceMappingURL=register.css.map */
