@@ -9,69 +9,91 @@
     <link rel="stylesheet" href="../static/styles/seemore.css">
 </head>
 
-<body>
+<body class="body">
     <div id="navbar">
-        <ul>
-            <li><a id="logo" href="{{ url_for('index') }}">PB</a></li>
-            <li>
-                <form action="{{ url_for('search') }}" method="GET" spellcheck="false">
-                    <div id="form">
-                        <input type="text" name="search" placeholder="ISBN/Title/Author" autocomplete="off" required>
-                        <button type="submit">
-                            <svg class="bi bi-search" width="20px" height="20px" viewBox="0 0 16 16" fill="currentColor"
-                                xmlns="http://www.w3.org/2000/svg">
-                                <path fill-rule="evenodd"
-                                    d="M10.442 10.442a1 1 0 0 1 1.415 0l3.85 3.85a1 1 0 0 1-1.414 1.415l-3.85-3.85a1 1 0 0 1 0-1.415z" />
-                                <path fill-rule="evenodd"
-                                    d="M6.5 12a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11zM13 6.5a6.5 6.5 0 1 1-13 0 6.5 6.5 0 0 1 13 0z" />
-                            </svg>
-                        </button>
-                    </div>
-                </form>
-            </li>
-            <div id="elements">
-                <li><a class="nav-element1" href="{{ url_for('profile') }}">{{username}}</a></li>
-                <li><a class="nav-element2" href="{{ url_for('login') }}">Dashboard</a></li>
-                <li><a class="nav-element3" href="{{ url_for('logout') }}">Log out</a></li>
-            </div>
-        </ul>
+        <div class="nav-links">
+            <ul>
+                <li><a id="logo" href="{{ url_for('index') }}">PB</a></li>
+                <li>
+                    <form action="{{ url_for('search') }}" method="GET" spellcheck="false">
+                        <div id="form">
+                            <input id="searchbar" type="text" name="search" placeholder="ISBN/Title/Author"
+                                autocomplete="off" required>
+                            <button id="search" type="submit">
+                                <svg class="bi bi-search" width="20px" height="20px" viewBox="0 0 16 16"
+                                    fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd"
+                                        d="M10.442 10.442a1 1 0 0 1 1.415 0l3.85 3.85a1 1 0 0 1-1.414 1.415l-3.85-3.85a1 1 0 0 1 0-1.415z" />
+                                    <path fill-rule="evenodd"
+                                        d="M6.5 12a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11zM13 6.5a6.5 6.5 0 1 1-13 0 6.5 6.5 0 0 1 13 0z" />
+                                </svg>
+                            </button>
+                        </div>
+                    </form>
+                </li>
+                <div id="elements">
+                    <li><a class="nav-element1" href="{{ url_for('profile') }}">{{username}}</a></li>
+                    <li><a class="nav-element2" href="{{ url_for('login') }}">Dashboard</a></li>
+                    <li><a class="nav-element3" href="{{ url_for('logout') }}">Log out</a></li>
+                </div>
+            </ul>
+        </div>
+        <div class="hamburger">
+            <div class="line line-top"></div>
+            <div class="line line-mid"></div>
+            <div class="line line-bottom"></div>
+        </div>
     </div>
     <p id="hint"><i>Hint: Click on the title to open the book's page.</i></p>
     <div id="booklinks">
-        <table class="table table-hover">
-            <thead>
-                <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Title</th>
-                    <th scope="col">Author(s)</th>
-                    <th scope="col">ISBN</th>
-                    <th scope="col">Year</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for i in range(all_books|length) %}
-                <tr>
-                    <th scope="row">{{i+1}}</th>
-                    <td>
-                        <a href="{{ url_for('books', isbn=all_books[i].isbn) }}">
-                            <p class="title">{{ all_books[i].title }}</p>
-                        </a>
-                    </td>
-                    <td>
-                        <p class="author">{{ all_books[i].author }}</p>
-                    </td>
-                    <td>
-                        <p class="isbn">{{ all_books[i].isbn }}</p>
-                    </td>
-                    <td>
-                        <p class="year">{{ all_books[i].year }}</p>
-                    </td>
+        <div class="table-responsive">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Title</th>
+                        <th scope="col">Author(s)</th>
+                        <th scope="col">ISBN</th>
+                        <th scope="col">Year</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for i in range(all_books|length) %}
+                    <tr>
+                        <th scope="row">{{i+1}}</th>
+                        <td>
+                            <a href="{{ url_for('books', isbn=all_books[i].isbn) }}">
+                                <p class="title">{{ all_books[i].title }}</p>
+                            </a>
+                        </td>
+                        <td>
+                            <p class="author">{{ all_books[i].author }}</p>
+                        </td>
+                        <td>
+                            <p class="isbn">{{ all_books[i].isbn }}</p>
+                        </td>
+                        <td>
+                            <p class="year">{{ all_books[i].year }}</p>
+                        </td>
 
-                </tr>
-                {% endfor %}
-            </tbody>
-        </table>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
     </div>
 </body>
+<script>
+    const hamburger = document.querySelector('.hamburger');
+    const navLinks = document.querySelector(".nav-links");
+    const links = document.querySelectorAll(".nav-links li");
+    const body = document.querySelector(".body");
+
+    hamburger.addEventListener("click", () => {
+        navLinks.classList.toggle("open");
+        body.classList.toggle("open");
+        hamburger.classList.toggle("open");
+    });
+</script>
 
 </html>

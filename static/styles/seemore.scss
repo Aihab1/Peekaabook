@@ -68,3 +68,153 @@ form {
   color: $black-brown;
   opacity: 0.9;
 }
+
+@media screen and (max-width: 800px) {
+  .title{
+    color: #007aff;
+  }
+  #hint{
+    margin-top: 20px;
+    width: 100%;
+    padding: 0px 15px;
+  }
+  .line {
+    width: 30px;
+    height: 3px;
+    background: white;
+    margin: 5px;
+  }
+  .hamburger {
+    position: absolute;
+    cursor: pointer;
+    right: 5%;
+    top: 50%;
+    transform: translate(-5%, -50%);
+    z-index: 3;
+    .line-top,
+    .line-mid,
+    .line-bottom {
+      transition: all 1s ease-out;
+    }
+  }
+  .nav-links.open {
+    clip-path: circle(1500px at 90% -10%);
+    -webkit-clip-path: circle(1500px at 90% -10%);
+    pointer-events: all;
+  }
+  .body.open {
+    overflow: hidden;
+  }
+  .hamburger.open {
+    .line-top {
+      transform: rotate(405deg);
+      position: absolute;
+      top: 25%;
+    }
+    .line-mid {
+      transform: translateX(-100%);
+      opacity: 0;
+      pointer-events: none;
+    }
+    .line-bottom {
+      transform: rotate(495deg);
+      position: absolute;
+      top: 25%;
+    }
+  }
+  .nav-links {
+    width: 100%;
+    height: 100vh;
+    background: $black-brown;
+    position: fixed;
+    top: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 2;
+    // display: none;
+    transition: all 1s ease-out;
+    clip-path: circle(0px at 90% -10%);
+    -webkit-clip-path: circle(0px at 90% -10%);
+    pointer-events: none;
+    ul {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      height: 100vh;
+      #elements {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+      }
+    }
+  }
+  #navbar {
+    height: 60px;
+    background: $black-brown;
+    position: relative;
+    width: 100%;
+    #logo {
+      font-size: 5.5rem;
+    }
+    li {
+      margin: 3vh 0;
+    }
+  }
+}
+@media screen and (max-height: 350px) and (max-width: 800px) {
+  .nav-links {
+    ul {
+      #elements {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+      }
+    }
+  }
+  #navbar {
+    #elements {
+      width: 100%;
+    }
+    #logo {
+      font-size: 4.5rem;
+    }
+  }
+}
+@media screen and (max-width: 415px) {
+  form {
+    #searchbar {
+      width: 80vw;
+      font-size: 1rem;
+    }
+  }
+  .datetime {
+    position: static;
+  }
+  .review-edit-delete {
+    display: flex;
+    flex-direction: column;
+    p {
+      width: 100%;
+    }
+    .edit-delete {
+      margin-top: 15px;
+      width: 100%;
+      display: flex;
+      justify-content: flex-end;
+      align-items: flex-end;
+    }
+  }
+  #outer-review-div {
+    display: flex;
+    flex-direction: column;
+    padding: 15px;
+    margin: 15px 15px;
+    align-items: center;
+    justify-content: center;
+  }
+}
