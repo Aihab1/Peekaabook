@@ -839,4 +839,10 @@ textarea:focus {
 h1 {
   font-weight: lighter;
 }
+
+@media screen and (max-width: 420px) {
+  #review {
+    padding: 15px 0px 15px 0px;
+  }
+}
 /*# sourceMappingURL=edit.css.map */
