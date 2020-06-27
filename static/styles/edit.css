@@ -842,7 +842,7 @@ h1 {
 
 @media screen and (max-width: 420px) {
   #review {
-    padding: 15px 0px 15px 0px;
+    padding: 15px;
   }
 }
 /*# sourceMappingURL=edit.css.map */

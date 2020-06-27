@@ -44,30 +44,28 @@
             <div class="line line-bottom"></div>
         </div>
     </div>
-    <div id="form-container">
-        <h1>Edit your review</h1>
-        <form id="review" action="{{ url_for('edit_review_redirect', isbn=isbn) }}" method="POST">
-            <div class="starinput">
-                <div class="mystars">
-                    <input class="star star-5" id="star-5" type="radio" name="star" value="5" />
-                    <label class="star star-5" for="star-5"></label>
-                    <input class="star star-4" id="star-4" type="radio" name="star" value="4" />
-                    <label class="star star-4" for="star-4"></label>
-                    <input class="star star-3" id="star-3" type="radio" name="star" value="3" />
-                    <label class="star star-3" for="star-3"></label>
-                    <input class="star star-2" id="star-2" type="radio" name="star" value="2" />
-                    <label class="star star-2" for="star-2"></label>
-                    <input class="star star-1" id="star-1" type="radio" name="star" value="1" checked />
-                    <label class="star star-1" for="star-1"></label>
-                </div>
+    <h1>Edit your review</h1>
+    <form id="review" action="{{ url_for('edit_review_redirect', isbn=isbn) }}" method="POST">
+        <div class="starinput">
+            <div class="mystars">
+                <input class="star star-5" id="star-5" type="radio" name="star" value="5" />
+                <label class="star star-5" for="star-5"></label>
+                <input class="star star-4" id="star-4" type="radio" name="star" value="4" />
+                <label class="star star-4" for="star-4"></label>
+                <input class="star star-3" id="star-3" type="radio" name="star" value="3" />
+                <label class="star star-3" for="star-3"></label>
+                <input class="star star-2" id="star-2" type="radio" name="star" value="2" />
+                <label class="star star-2" for="star-2"></label>
+                <input class="star star-1" id="star-1" type="radio" name="star" value="1" checked />
+                <label class="star star-1" for="star-1"></label>
             </div>
-            <div id="text-area">
-                <textarea name="review" rows=10 cols=80% placeholder="Enter your review here..."
-                    required>{% if old_review != None %}{{ old_review }}{% endif %}</textarea>
-                <button type="submit">Update</button>
-            </div>
-        </form>
-    </div>
+        </div>
+        <div id="text-area">
+            <textarea name="review" rows=10 cols=80% placeholder="Enter your review here..."
+                required>{% if old_review != None %}{{ old_review }}{% endif %}</textarea>
+            <button type="submit">Update</button>
+        </div>
+    </form>
 </body>
 <script>
     const hamburger = document.querySelector('.hamburger');
