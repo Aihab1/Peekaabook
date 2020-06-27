@@ -82,6 +82,11 @@ form{
 }
 
 @media only screen and (max-width: 565px){
+  #logo{
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+  }
   *{
     overflow-x: hidden;
   }
