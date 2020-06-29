@@ -742,7 +742,7 @@ textarea:focus {
 }
 
 h1 {
-  padding: 40px 150px 0px 50px;
+  padding: 40px 50px 0px 50px;
 }
 
 .starinput {
@@ -843,6 +843,10 @@ h1 {
 @media screen and (max-width: 420px) {
   #review {
     padding: 15px;
+  }
+  h1 {
+    padding: 15px;
+    width: 100%;
   }
 }
 /*# sourceMappingURL=edit.css.map */
