@@ -274,27 +274,33 @@ body {
 }
 
 @media only screen and (max-width: 450px) {
+  #navbar #logo {
+    font-size: 40px;
+  }
+  #navbar #login {
+    font-size: 20px;
+  }
   #intro h1 {
-    font-size: 4.25rem;
+    font-size: 4rem;
   }
   #intro h2 {
-    font-size: 2.2rem;
+    font-size: 2rem;
   }
   #get-started {
     height: 300px;
   }
   #get-started a {
-    font-size: 3rem;
+    font-size: 2.5rem;
   }
   #get-started p {
-    font-size: 1.4rem;
+    font-size: 1rem;
     width: 85%;
   }
   #quotes {
     height: 185px;
   }
   #quotes h2 {
-    font-size: 1.75rem;
+    font-size: 1.4rem;
   }
   #quotes p {
     font-size: 1rem;
