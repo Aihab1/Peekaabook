@@ -178,6 +178,14 @@ form p a:hover {
   }
 }
 
+@media screen and (min-height: 700px) {
+  #background {
+    padding: 0;
+    height: 100vh;
+    width: 100%;
+  }
+}
+
 form #username,
 form #password,
 form #password2,
