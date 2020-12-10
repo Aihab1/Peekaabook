@@ -155,11 +155,19 @@ def books(isbn):
                 break
             wishlisted = False
 
-        req1 = requests.get("https://www.goodreads.com/book/review_counts.json", params={"key": API_KEY, "isbns": isbn}).json()
-        avg_rating = req1['books'][0]['average_rating']
-        rating_count = req1['books'][0]['work_ratings_count']
-
+        #--GOODREADS NO LONGER PROVIDES FREE ACCESS TO ITS API--
+        # req1 = requests.get("https://www.goodreads.com/book/review_counts.json", params={"key": API_KEY, "isbns": isbn}).json()
+        # avg_rating = req1['books'][0]['average_rating']
+        # rating_count = req1['books'][0]['work_ratings_count']
         req2 = requests.get("https://www.googleapis.com/books/v1/volumes?q=isbn:" + isbn).json()
+        try:
+            avg_rating = req2['items'][0]['volumeInfo']['averageRating']
+            rating_count = req2['items'][0]['volumeInfo']['ratingsCount']
+        except:
+            avg_rating = None
+            rating_count = None
+
+        # req2 = requests.get("https://www.googleapis.com/books/v1/volumes?q=isbn:" + isbn).json()
         try:
             description = req2['items'][0]['volumeInfo']['description']
         except:

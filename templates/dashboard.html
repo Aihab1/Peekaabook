@@ -28,63 +28,63 @@
             <div class="line line-bottom"></div>
         </div>
     </div>
-    <h1>Hello {{username}}</h1>
-    <h2>Search a book...</h2>
-    <form action="{{ url_for('search') }}" method="GET" spellcheck="false">
-        <div id="form">
-            <input type="text" name="search" placeholder="ISBN/Title/Author" autocomplete="off" required>
-            <button type="submit">
-                <svg class="bi bi-search" width="20px" height="20px" viewBox="0 0 16 16" fill="currentColor"
-                    xmlns="http://www.w3.org/2000/svg">
-                    <path fill-rule="evenodd"
-                        d="M10.442 10.442a1 1 0 0 1 1.415 0l3.85 3.85a1 1 0 0 1-1.414 1.415l-3.85-3.85a1 1 0 0 1 0-1.415z" />
-                    <path fill-rule="evenodd"
-                        d="M6.5 12a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11zM13 6.5a6.5 6.5 0 1 1-13 0 6.5 6.5 0 0 1 13 0z" />
-                </svg>
-            </button>
-        </div>
-    </form>
-    {% if mybooks != ["Sorry, no book found!"] and mybooks|length > 0 %}
-    <div class="swiper-container">
-        <div class="swiper-wrapper">
-            {% for i in range(mybooks|length) %}
-            <div class="swiper-slide">
-                <a href="{{ url_for('books', isbn=mybooks[i].isbn) }}">
-                    {% if mybooks[i].imagelink != None %}
-                    <img src="{{mybooks[i].imagelink}}" alt="Book Cover">
-                    {% else %}
-                    <img src="../static/bookcover.png" alt="Book Cover">
-                    {% endif %}
-                    <div id="contents">
-                        <h3>{{ mybooks[i].title }}</h3>
-                        <p class="detail author"><i>by {{ mybooks[i].author }}</i></p>
-                        <p class="bookhead">ISBN</p>
-                        <p class="detail">{{ mybooks[i].isbn }}</p>
-                        <p class="bookhead">YEAR</p>
-                        <p class="detail">{{ mybooks[i].year }}</p>
-                    </div>
-                </a>
+    <div id="outer-div">
+        <h1>Hello {{username}}</h1>
+        <h2>Search a book...</h2>
+        <form action="{{ url_for('search') }}" method="GET" spellcheck="false">
+            <div id="form">
+                <input type="text" name="search" placeholder="ISBN/Title/Author" autocomplete="off" required>
+                <button type="submit">
+                    <svg class="bi bi-search" width="20px" height="20px" viewBox="0 0 16 16" fill="currentColor"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd"
+                            d="M10.442 10.442a1 1 0 0 1 1.415 0l3.85 3.85a1 1 0 0 1-1.414 1.415l-3.85-3.85a1 1 0 0 1 0-1.415z" />
+                        <path fill-rule="evenodd"
+                            d="M6.5 12a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11zM13 6.5a6.5 6.5 0 1 1-13 0 6.5 6.5 0 0 1 13 0z" />
+                    </svg>
+                </button>
             </div>
-            {% endfor %}
-            {% if mybooks|length == 10 %}
-            <div id="seemore" class="swiper-slide">
-                <a href="{{url_for('see_more', mysearch=mysearch)}}">See More</a>
+        </form>
+        {% if mybooks != ["Sorry, no book found!"] and mybooks|length > 0 %}
+        <div class="swiper-container">
+            <div class="swiper-wrapper">
+                {% for i in range(mybooks|length) %}
+                <div class="swiper-slide">
+                    <a href="{{ url_for('books', isbn=mybooks[i].isbn) }}">
+                        {% if mybooks[i].imagelink != None %}
+                        <img src="{{mybooks[i].imagelink}}" alt="Book Cover">
+                        {% else %}
+                        <img src="../static/bookcover.png" alt="Book Cover">
+                        {% endif %}
+                        <div id="contents">
+                            <h3>{{ mybooks[i].title }}</h3>
+                            <p class="detail author"><i>by {{ mybooks[i].author }}</i></p>
+                            <p class="bookhead">ISBN</p>
+                            <p class="detail">{{ mybooks[i].isbn }}</p>
+                            <p class="bookhead">YEAR</p>
+                            <p class="detail">{{ mybooks[i].year }}</p>
+                        </div>
+                    </a>
+                </div>
+                {% endfor %}
+                {% if mybooks|length == 10 %}
+                <div id="seemore" class="swiper-slide">
+                    <a href="{{url_for('see_more', mysearch=mysearch)}}">See More</a>
+                </div>
+                {% endif %}
             </div>
-            {% endif %}
+            <!-- Add Pagination -->
+            <div class="swiper-pagination"></div>
+            <!-- Add Arrows -->
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
         </div>
-        <!-- Add Pagination -->
-        <div class="swiper-pagination"></div>
-        <!-- Add Arrows -->
-        <div class="swiper-button-next"></div>
-        <div class="swiper-button-prev"></div>
+        {% else %}
+        {% for text in mybooks %}
+        <h3 class="sorry" style="text-align: center;">{{text}}</h3>
+        {% endfor %}
+        {% endif %}
     </div>
-    {% else %}
-    {% for text in mybooks %}
-    <h3 class="sorry" style="text-align: center;">{{text}}</h3>
-    {% endfor %}
-    {% endif %}
-    <br>
-    <br>
     {% if drama|length > 0 %}
     <h2>Browse by genre</h2>
     <br>
@@ -661,7 +661,7 @@
     if (viewport_width < 800 && viewport_width > 415) {
         spv = 2;
     }
-    else if(viewport_width < 415){
+    else if (viewport_width < 415) {
         spv = 1;
     }
     else {
