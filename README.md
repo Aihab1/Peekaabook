@@ -7,7 +7,7 @@ The Site: https://peek-aa-book.herokuapp.com/
 ## What you can do:
 * Read random quotes about books by famous people on the homepage.
 * Create a free account and log in using the credentials provided.
-* Search any book from our book collection (5000 books at present).
+* Search any book from the books collection (5000 books at present).
 * View basic book info like Authors, ISBN, Date of Publication, Genre, Cover Image, Book description, Ratings, Reviews.
 * Add a book to your reading wishlist (the wishlist is shown under the user's profile)
 * Review a book and read reviews written by other users of the community.
